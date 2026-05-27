@@ -9,7 +9,7 @@ import VinosPage from './pages/VinosPage'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/carmine-granata">
       <Routes>
         <Route element={<MainLayout />}>
           <Route index element={<HomePage />} />

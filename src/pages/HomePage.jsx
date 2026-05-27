@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import CtaPanel from '../components/ui/CtaPanel'
 import ExperienceCard from '../components/ui/ExperienceCard'
 import FloatingWhatsApp from '../components/ui/FloatingWhatsApp'
@@ -116,12 +117,12 @@ function StorySection() {
           considerada entre las mejores del mundo por nuestro excelente, dedicado
           y unico capital del vino en el mundo.
         </p>
-        <a
-          href="/bodega"
+        <Link
+          to="/bodega"
           className="mt-8 inline-flex border-b border-[#f0b8b8] pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f0b8b8]"
         >
           Explorar la bodega
-        </a>
+        </Link>
       </div>
     </section>
   )
