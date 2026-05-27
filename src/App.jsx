@@ -7,9 +7,14 @@ import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import VinosPage from './pages/VinosPage'
 
+const routerBasename =
+  import.meta.env.BASE_URL === '/'
+    ? undefined
+    : import.meta.env.BASE_URL.replace(/\/$/, '')
+
 function App() {
   return (
-    <BrowserRouter basename="/carmine-granata">
+    <BrowserRouter basename={routerBasename}>
       <Routes>
         <Route element={<MainLayout />}>
           <Route index element={<HomePage />} />
