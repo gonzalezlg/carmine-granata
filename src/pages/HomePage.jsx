@@ -3,10 +3,18 @@ import { Link } from 'react-router-dom'
 import CtaPanel from '../components/ui/CtaPanel'
 import ExperienceCard from '../components/ui/ExperienceCard'
 import FloatingWhatsApp from '../components/ui/FloatingWhatsApp'
-import ImagePlaceholder from '../components/ui/ImagePlaceholder'
 import NewsletterForm from '../components/ui/NewsletterForm'
 import SectionHeader from '../components/ui/SectionHeader'
 import WineCard from '../components/ui/WineCard'
+import bodegaHistoriaImage from '../assets/home/bodega-historia.png'
+import experienciaAlmuerzoImage from '../assets/home/experiencia-almuerzo.png'
+import experienciaAtardecerImage from '../assets/home/experiencia-atardecer.png'
+import experienciaDegustacionImage from '../assets/home/experiencia-degustacion.png'
+import heroVinedosImage from '../assets/home/hero-vinedos.png'
+import vinoAltaGamaImage from '../assets/home/vino-alta-gama.png'
+import vinoNicolasGranataImage from '../assets/home/vino-nicolas-granata.png'
+import vinoOlivosImage from '../assets/home/vino-olivos.png'
+import vinoReservaFamiliaImage from '../assets/home/vino-reserva-familia.png'
 
 const wines = [
   {
@@ -14,24 +22,28 @@ const wines = [
     category: 'La herencia en cada copa',
     description: 'Vino de autor que expresa la esencia pura del terroir andino.',
     imageVariant: 'bottle',
+    imageSrc: vinoNicolasGranataImage,
   },
   {
     title: 'Carmine Granata Alta Gama',
     category: 'Complejidad y caracter',
     description: 'Profundidad y estructura definidas por el paso del tiempo en roble.',
     imageVariant: 'cellar',
+    imageSrc: vinoAltaGamaImage,
   },
   {
     title: 'Carmine Granata Olivos',
     category: 'Tradicion mendocina',
     description: 'La frescura de la tierra y la elegancia clasica de Mendoza.',
     imageVariant: 'vineyard',
+    imageSrc: vinoOlivosImage,
   },
   {
     title: 'Reserva de Familia',
     category: 'Edicion limitada',
     description: 'Seleccion especial de partidas pequenas con identidad propia.',
     imageVariant: 'building',
+    imageSrc: vinoReservaFamiliaImage,
   },
 ]
 
@@ -40,16 +52,19 @@ const experiences = [
     title: 'Almuerzo de la Tierra',
     category: 'Gastronomia',
     imageVariant: 'dinner',
+    imageSrc: experienciaAlmuerzoImage,
   },
   {
     title: 'Degustacion de Autor',
     category: 'Cava',
     imageVariant: 'cellar',
+    imageSrc: experienciaDegustacionImage,
   },
   {
     title: 'Atardecer en el Vinedo',
     category: 'Recorrido',
     imageVariant: 'walk',
+    imageSrc: experienciaAtardecerImage,
   },
 ]
 
@@ -70,10 +85,10 @@ function HomePage() {
 function HeroSection() {
   return (
     <section className="relative flex min-h-[92svh] items-center justify-center overflow-hidden md:min-h-screen">
-      <ImagePlaceholder
-        variant="vineyard"
-        className="absolute inset-0"
-        label="Vinedos al atardecer"
+      <img
+        src={heroVinedosImage}
+        alt="Vinedos al atardecer"
+        className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-[#120d0d]/35" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#120d0d] to-transparent" />
@@ -98,12 +113,14 @@ function HeroSection() {
 
 function StorySection() {
   return (
-    <section className="mx-auto grid max-w-[980px] gap-10 px-6 py-16 md:grid-cols-[1.15fr_0.85fr] md:items-center md:gap-16 md:py-24 lg:px-0">
-      <ImagePlaceholder
-        variant="building"
-        className="aspect-[4/5] w-full"
-        label="Fachada de la bodega"
-      />
+    <section className="mx-auto grid max-w-[980px] gap-10 px-6 py-16 md:grid-cols-[1.15fr_0.85fr] md:items-center md:gap-16 md:py-24 lg:min-h-[620px] lg:py-14 lg:px-0">
+      <div className="aspect-[4/5] w-full overflow-hidden lg:aspect-[5/4]">
+        <img
+          src={bodegaHistoriaImage}
+          alt="Fachada de la bodega"
+          className="h-full w-full object-cover"
+        />
+      </div>
 
       <div className="md:max-w-sm">
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#a18072]">
@@ -225,8 +242,8 @@ function WinesSection() {
   }
 
   return (
-    <section id="vinos" className="bg-[#1b1414] py-20 md:py-24">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+    <section id="vinos" className="bg-[#1b1414] py-20 md:py-24 lg:flex lg:min-h-[620px] lg:items-center lg:py-14">
+      <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
         <SectionHeader
           eyebrow="Seleccion premium"
           title="Nuestros Vinos"
@@ -241,7 +258,7 @@ function WinesSection() {
           {carouselWines.map((wine, index) => (
             <div
               key={`${wine.title}-${index}`}
-              className="min-w-[78%] snap-center sm:min-w-[48%] md:min-w-[calc((100%-3rem)/3)] md:snap-start"
+              className="min-w-[78%] snap-center sm:min-w-[48%] md:min-w-[calc((100%-3rem)/3)] md:snap-start lg:min-w-[260px]"
             >
               <WineCard {...wine} />
             </div>
@@ -266,15 +283,15 @@ function WinesSection() {
 
 function ExperiencesSection() {
   return (
-    <section className="py-20 md:py-24">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+    <section className="py-20 md:py-24 lg:flex lg:min-h-[620px] lg:items-center lg:py-14">
+      <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
         <SectionHeader
           eyebrow="Vivir el terroir"
           title="Experiencias que trascienden"
           actionLabel="Conoce nuestras experiencias"
         />
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3 lg:mx-auto lg:max-w-5xl">
           {experiences.map((experience) => (
             <ExperienceCard key={experience.title} {...experience} />
           ))}
