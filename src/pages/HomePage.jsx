@@ -72,9 +72,9 @@ function HomePage() {
   return (
     <div className="bg-[#120d0d] text-[#e0d1d1]">
       <HeroSection />
-      <StorySection />
       <WinesSection />
       <ExperiencesSection />
+      <StorySection />
       <ActionSection />
       <NewsletterSection />
       <FloatingWhatsApp />
@@ -300,6 +300,7 @@ function ExperiencesSection() {
     </section>
   )
 }
+
 
 function ActionSection() {
   return (

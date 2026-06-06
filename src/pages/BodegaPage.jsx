@@ -82,6 +82,16 @@ function BodegaHero() {
       <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(18,13,13,0.12)_0%,_rgba(18,13,13,0.54)_45%,_#120d0d_100%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_24%,_transparent_0%,_rgba(18,13,13,0.18)_36%,_rgba(18,13,13,0.9)_86%)]" />
 
+      <div className="relative z-10 mx-auto max-w-[320px] px-5 text-center sm:max-w-2xl lg:hidden">
+        <h1 className="font-serif text-4xl font-medium leading-tight text-[#f6ecea] sm:text-5xl">
+          Nuestra Esencia
+        </h1>
+        <p className="mx-auto mt-5 font-serif text-sm leading-7 text-[#ddc0bd]/84 sm:text-base sm:leading-8">
+          En el corazon de los Andes cultivamos mas que vides; cultivamos una
+          herencia que trasciende el tiempo.
+        </p>
+      </div>
+
       <div className="relative z-10 mx-auto hidden max-w-3xl px-6 text-center lg:block">
         <h1 className="font-serif text-6xl font-medium leading-none text-[#f6ecea]">
           Nuestra Esencia
@@ -99,8 +109,68 @@ function OriginSection() {
   return (
     <section className="bg-[#171212] px-5 py-24 sm:py-32 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
-        <div className="mx-auto flex min-h-[520px] items-center justify-center text-center lg:hidden">
-          <SectionLabel>Nuestra historia</SectionLabel>
+        <div className="space-y-20 lg:hidden">
+          <article className="grid gap-10 sm:grid-cols-2 sm:items-center">
+            <div className="order-2 sm:order-1">
+              <SectionLabel>El origen</SectionLabel>
+              <h2 className="mt-5 font-serif text-4xl font-normal leading-tight text-[#f2e7e4] sm:text-[42px]">
+                El Respeto por la Tierra
+              </h2>
+              <p className="mt-6 font-serif text-sm leading-7 text-[#ddc0bd]/84 sm:text-base sm:leading-8">
+                Nuestra filosofia se basa en la minima intervencion y el maximo
+                respeto por el ciclo natural. Entendemos que el vino se hace en
+                el vinedo, y nuestro papel es ser guardianes de este ecosistema
+                privilegiado.
+              </p>
+              <div className="mt-7 h-px w-20 bg-[#ffaba6]/38" />
+            </div>
+
+            <div className="order-1 relative sm:order-2">
+              <div className="overflow-hidden rounded-sm">
+                <img
+                  src={landImage}
+                  alt="Manos sosteniendo tierra mendocina"
+                  className="aspect-[4/5] h-full w-full object-cover sm:aspect-[4/3]"
+                />
+              </div>
+              <div className="absolute -bottom-6 left-4 border border-white/10 bg-[#241e1e]/55 p-5 backdrop-blur-xl sm:-bottom-7 sm:-left-5 sm:p-6">
+                <p className="font-serif text-4xl italic leading-none text-[#ece0df]/16 [-webkit-text-stroke:0.5px_rgba(236,224,223,0.35)] sm:text-5xl">
+                  1,200m
+                </p>
+                <p className="mt-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#ddc0bd]/72 sm:text-[10px]">
+                  Altitud promedio
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article className="grid gap-10 sm:grid-cols-2 sm:items-center">
+            <div className="overflow-hidden rounded-sm">
+              <img
+                src={terroirImage}
+                alt="Vinedos de altura con la Cordillera de los Andes"
+                className="aspect-[4/5] h-full w-full object-cover sm:aspect-[4/3]"
+              />
+            </div>
+
+            <div>
+              <SectionLabel>El terroir</SectionLabel>
+              <h2 className="mt-5 font-serif text-4xl font-normal leading-tight text-[#f2e7e4] sm:text-[42px]">
+                La Altura de Mendoza
+              </h2>
+              <p className="mt-6 font-serif text-sm leading-7 text-[#ddc0bd]/84 sm:text-base sm:leading-8">
+                La amplitud termica y la pureza del agua de deshielo confieren a
+                nuestras uvas una intensidad unica. Cada parcela es un
+                microclima que solo el tiempo permite revelar.
+              </p>
+              <button
+                type="button"
+                className="mt-8 border border-[#a58b88]/35 px-7 py-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#ece0df] transition hover:border-[#ffaba6] hover:text-[#ffaba6]"
+              >
+                Explorar el mapa
+              </button>
+            </div>
+          </article>
         </div>
 
         <div className="hidden items-center gap-20 lg:grid lg:grid-cols-2">
@@ -205,13 +275,29 @@ function HistorySection() {
           </div>
         </div>
 
-        <div className="flex min-h-[520px] items-center justify-start lg:hidden">
-          <div className="max-w-[310px]">
-            <SectionLabel>Maestros hacedores</SectionLabel>
-            <p className="mt-12 font-serif text-sm font-semibold leading-6 text-[#ddc0bd]/86 sm:text-base sm:leading-7">
-              Unidos por la pasion y el rigor tecnico, nuestro equipo de
-              enologia interpreta cada cosecha como una obra de arte irrepetible.
-            </p>
+        <div className="lg:hidden">
+          <div className="text-center">
+            <SectionLabel>Nuestra historia</SectionLabel>
+            <h2 className="mt-5 font-serif text-4xl font-normal leading-tight text-[#f2e7e4] sm:text-[42px]">
+              Cien anos de legado
+            </h2>
+          </div>
+
+          <div className="mt-14 grid gap-12 sm:grid-cols-2">
+            {timeline.map((item) => (
+              <article key={item.year} className="text-center">
+                <p className="font-serif text-5xl text-[#ffaba6]/72">
+                  {item.year}
+                </p>
+                <div className="mx-auto mt-5 h-px w-12 bg-[#ffaba6]/28" />
+                <h3 className="mt-5 font-serif text-2xl text-[#f2e7e4]">
+                  {item.title}
+                </h3>
+                <p className="mx-auto mt-4 max-w-[260px] font-serif text-sm leading-6 text-[#ddc0bd]/72">
+                  {item.description}
+                </p>
+              </article>
+            ))}
           </div>
         </div>
       </div>
@@ -259,8 +345,40 @@ function TeamSection() {
           </div>
         </div>
 
-        <div className="flex min-h-[520px] items-center justify-center text-center lg:hidden">
-          <SectionLabel>La invitacion</SectionLabel>
+        <div className="lg:hidden">
+          <div className="mb-14 max-w-xl">
+            <SectionLabel>Maestros hacedores</SectionLabel>
+            <h2 className="mt-5 font-serif text-4xl font-normal leading-tight text-[#f2e7e4] sm:text-[42px]">
+              El Alma del Equipo
+            </h2>
+            <p className="mt-6 font-serif text-sm leading-7 text-[#ddc0bd]/78 sm:text-base sm:leading-8">
+              Unidos por la pasion y el rigor tecnico, nuestro equipo de
+              enologia interpreta cada cosecha como una obra de arte irrepetible.
+            </p>
+          </div>
+
+          <div className="grid gap-12 sm:grid-cols-3">
+            {team.map((person) => (
+              <article key={person.name} className="group">
+                <div className="aspect-[4/5] overflow-hidden rounded-sm grayscale transition duration-700 group-hover:grayscale-0">
+                  <img
+                    src={person.image}
+                    alt={person.name}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <h3 className="mt-4 font-serif text-2xl text-[#f2e7e4] transition group-hover:text-[#ffaba6]">
+                  {person.name}
+                </h3>
+                <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#ddc0bd]/72">
+                  {person.role}
+                </p>
+                <p className="mt-3 font-serif text-xs leading-5 text-[#ddc0bd]/72">
+                  {person.description}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -271,8 +389,8 @@ function InvitationSection() {
   return (
     <section className="bg-[#171212] px-5 py-24 text-center sm:py-32 lg:flex lg:min-h-[320px] lg:items-center lg:px-8 lg:py-20">
       <div className="mx-auto max-w-3xl">
-        <SectionLabel className="hidden lg:block">La invitacion</SectionLabel>
-        <h2 className="mt-5 hidden font-serif font-medium leading-tight text-[#f2e7e4] lg:block lg:text-5xl">
+        <SectionLabel>La invitacion</SectionLabel>
+        <h2 className="mt-5 font-serif text-4xl font-medium leading-tight text-[#f2e7e4] sm:text-[42px] lg:text-5xl">
           Descubra nuestros vinos
         </h2>
         <Link

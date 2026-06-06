@@ -13,7 +13,7 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50 border-b border-white/10 bg-[#120d0d]/90 text-[#e0d1d1] backdrop-blur-sm">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#120d0d]/90 text-[#e0d1d1] backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
         <NavLink
           to="/"
