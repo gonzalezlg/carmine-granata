@@ -113,7 +113,7 @@ function HeroSection() {
 
 function StorySection() {
   return (
-    <section className="mx-auto grid max-w-[980px] gap-10 px-6 py-16 md:grid-cols-[1.15fr_0.85fr] md:items-center md:gap-16 md:py-24 lg:min-h-[620px] lg:py-14 lg:px-0">
+    <section className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-[1.15fr_0.85fr] md:items-center md:gap-16 md:py-24 lg:min-h-[620px] lg:px-8 lg:py-14">
       <div className="aspect-[4/5] w-full overflow-hidden lg:aspect-[5/4]">
         <img
           src={bodegaHistoriaImage}
@@ -149,8 +149,11 @@ function WinesSection() {
   const carouselRef = useRef(null)
   const scrollTimeoutRef = useRef(null)
   const activeWineIndexRef = useRef(0)
+  const carouselItemIndexRef = useRef(wines.length)
   const [activeWineIndex, setActiveWineIndex] = useState(0)
-  const carouselWines = [wines[wines.length - 1], ...wines, wines[0]]
+  const carouselWines = [...wines, ...wines, ...wines]
+  const firstRealWineIndex = wines.length
+  const hasDesktopSlider = wines.length > 4
 
   const scrollToCarouselItem = useCallback((index, behavior = 'smooth') => {
     const carousel = carouselRef.current
@@ -160,30 +163,57 @@ function WinesSection() {
       return
     }
 
+    const previousScrollBehavior = carousel.style.scrollBehavior
+    const shouldAlignToStart = window.matchMedia('(min-width: 768px)').matches
+    const cardPosition = card.offsetLeft - carousel.offsetLeft
+    const scrollPosition = shouldAlignToStart
+      ? cardPosition
+      : cardPosition - (carousel.clientWidth - card.clientWidth) / 2
+
+    if (behavior === 'auto') {
+      carousel.style.scrollBehavior = 'auto'
+    }
+
     carousel.scrollTo({
-      left: card.offsetLeft - carousel.offsetLeft,
+      left: scrollPosition,
       behavior,
     })
+
+    if (behavior === 'auto') {
+      requestAnimationFrame(() => {
+        carousel.style.scrollBehavior = previousScrollBehavior
+      })
+    }
   }, [])
 
   const scrollToWine = useCallback(
     (index) => {
+      carouselItemIndexRef.current = firstRealWineIndex + index
       setActiveWineIndex(index)
-      scrollToCarouselItem(index + 1)
+      scrollToCarouselItem(firstRealWineIndex + index)
     },
-    [scrollToCarouselItem],
+    [firstRealWineIndex, scrollToCarouselItem],
   )
+
+  const advanceWineCarousel = useCallback(() => {
+    const nextItemIndex = carouselItemIndexRef.current + 1
+    const nextIndex = (activeWineIndexRef.current + 1) % wines.length
+
+    carouselItemIndexRef.current = nextItemIndex
+    setActiveWineIndex(nextIndex)
+    scrollToCarouselItem(nextItemIndex)
+  }, [scrollToCarouselItem])
 
   useEffect(() => {
     const animationFrame = requestAnimationFrame(() => {
-      scrollToCarouselItem(1, 'auto')
+      scrollToCarouselItem(firstRealWineIndex, 'auto')
     })
 
     return () => {
       cancelAnimationFrame(animationFrame)
       clearTimeout(scrollTimeoutRef.current)
     }
-  }, [scrollToCarouselItem])
+  }, [firstRealWineIndex, scrollToCarouselItem])
 
   useEffect(() => {
     activeWineIndexRef.current = activeWineIndex
@@ -191,15 +221,13 @@ function WinesSection() {
 
   useEffect(() => {
     const autoplayInterval = window.setInterval(() => {
-      const nextIndex = (activeWineIndexRef.current + 1) % wines.length
-
-      scrollToWine(nextIndex)
+      advanceWineCarousel()
     }, 4500)
 
     return () => {
       window.clearInterval(autoplayInterval)
     }
-  }, [scrollToWine])
+  }, [advanceWineCarousel])
 
   function handleWineScroll() {
     const carousel = carouselRef.current
@@ -220,23 +248,25 @@ function WinesSection() {
         : closestIndex
     }, 0)
 
-    const nextIndex =
-      closestItemIndex === 0
-        ? wines.length - 1
-        : closestItemIndex === carouselWines.length - 1
-          ? 0
-          : closestItemIndex - 1
+    const nextIndex = closestItemIndex % wines.length
 
+    carouselItemIndexRef.current = closestItemIndex
     setActiveWineIndex(nextIndex)
 
     clearTimeout(scrollTimeoutRef.current)
     scrollTimeoutRef.current = setTimeout(() => {
-      if (closestItemIndex === 0) {
-        scrollToCarouselItem(wines.length, 'auto')
+      if (closestItemIndex < firstRealWineIndex) {
+        const resetIndex = closestItemIndex + wines.length
+
+        carouselItemIndexRef.current = resetIndex
+        scrollToCarouselItem(resetIndex, 'auto')
       }
 
-      if (closestItemIndex === carouselWines.length - 1) {
-        scrollToCarouselItem(1, 'auto')
+      if (closestItemIndex >= firstRealWineIndex + wines.length) {
+        const resetIndex = closestItemIndex - wines.length
+
+        carouselItemIndexRef.current = resetIndex
+        scrollToCarouselItem(resetIndex, 'auto')
       }
     }, 120)
   }
@@ -252,20 +282,28 @@ function WinesSection() {
 
         <div
           ref={carouselRef}
-          className="-mx-5 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-5 pb-2 [scrollbar-width:none] md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden"
+          className={`-mx-5 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-5 pb-2 [scrollbar-width:none] md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden ${
+            hasDesktopSlider
+              ? ''
+              : 'lg:grid lg:grid-cols-4 lg:overflow-visible lg:snap-none lg:scroll-auto'
+          }`}
           onScroll={handleWineScroll}
         >
           {carouselWines.map((wine, index) => (
             <div
               key={`${wine.title}-${index}`}
-              className="min-w-[78%] snap-center sm:min-w-[48%] md:min-w-[calc((100%-3rem)/3)] md:snap-start lg:min-w-[260px]"
+              className={`min-w-[78%] snap-center sm:min-w-[48%] md:min-w-[calc((100%-3rem)/3)] md:snap-start ${
+                hasDesktopSlider
+                  ? 'lg:min-w-[260px]'
+                  : `${index < firstRealWineIndex || index >= firstRealWineIndex + wines.length ? 'lg:hidden' : ''} lg:min-w-0 lg:snap-none`
+              }`}
             >
               <WineCard {...wine} />
             </div>
           ))}
         </div>
 
-        <div className="mt-8 flex justify-center gap-2">
+        <div className={`mt-8 flex justify-center gap-2 ${wines.length > 4 ? '' : 'lg:hidden'}`}>
           {wines.map((wine, index) => (
             <button
               key={wine.title}
@@ -291,7 +329,7 @@ function ExperiencesSection() {
           actionLabel="Conoce nuestras experiencias"
         />
 
-        <div className="grid gap-6 md:grid-cols-3 lg:mx-auto lg:max-w-5xl">
+        <div className="grid gap-6 md:grid-cols-3">
           {experiences.map((experience) => (
             <ExperienceCard key={experience.title} {...experience} />
           ))}
@@ -325,15 +363,17 @@ function ActionSection() {
 
 function NewsletterSection() {
   return (
-    <section className="px-5 py-20 text-center md:py-24">
-      <h2 className="font-serif text-4xl italic leading-tight text-white">
-        Suscribase a nuestra Newsletter
-      </h2>
-      <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-[#e0d1d1]/70">
-        Conoce eventos especiales, lanzamientos exclusivos para recibir novedades
-        sobre nuestras etiquetas, eventos privados y la vida en el vinedo.
-      </p>
-      <NewsletterForm />
+    <section className="py-20 text-center md:py-24">
+      <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
+        <h2 className="font-serif text-4xl italic leading-tight text-white">
+          Suscribase a nuestra Newsletter
+        </h2>
+        <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-[#e0d1d1]/70">
+          Conoce eventos especiales, lanzamientos exclusivos para recibir novedades
+          sobre nuestras etiquetas, eventos privados y la vida en el vinedo.
+        </p>
+        <NewsletterForm />
+      </div>
     </section>
   )
 }
