@@ -4,12 +4,12 @@ import experienciaDegustacionImage from '../assets/home/experiencia-degustacion.
 
 const heroImage = experienciaAtardecerImage
 
-const categories = [
+/* const categories = [
   'Todo',
   'Degustaciones',
   'Experiencias gastronomicas',
   'Atardeceres',
-]
+] */
 
 const guidedVisits = [
   {
@@ -110,7 +110,7 @@ function ExperienciasHero() {
   )
 }
 
-function CategoryNav() {
+/* function CategoryNav() {
   return (
     <section className="border-y border-[#302827] bg-[#120d0d]/95 py-4">
       <nav
@@ -134,7 +134,7 @@ function CategoryNav() {
     </section>
   )
 }
-
+ */
 function GuidedVisitSection() {
   return (
     <section id="propuestas" className="bg-[#120d0d] px-5 py-20 lg:px-8 lg:py-24">

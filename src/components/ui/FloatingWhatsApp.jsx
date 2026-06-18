@@ -1,8 +1,10 @@
-function FloatingWhatsApp() {
+function FloatingWhatsApp({ href }) {
   return (
     <a
-      href="#"
+      href={href}
       aria-label="Contactar por WhatsApp"
+      target="_blank"
+      rel="noreferrer"
       className="fixed bottom-5 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-[#f0b8b8] text-[#631111] shadow-lg shadow-black/25 transition hover:scale-105 hover:bg-white"
     >
       <svg
