@@ -16,6 +16,8 @@ import vinoNicolasGranataImage from '../assets/home/vino-nicolas-granata.png'
 import vinoOlivosImage from '../assets/home/vino-olivos.png'
 import vinoReservaFamiliaImage from '../assets/home/vino-reserva-familia.png'
 
+const whatsappUrl = 'https://wa.me/542611234567'
+
 const wines = [
   {
     title: 'Nicolas Granata',
@@ -77,7 +79,7 @@ function HomePage() {
       <StorySection />
       <ActionSection />
       <NewsletterSection />
-      <FloatingWhatsApp />
+      <FloatingWhatsApp href={whatsappUrl} />
     </div>
   )
 }
@@ -100,12 +102,12 @@ function HeroSection() {
         <p className="mt-6 text-xs font-semibold uppercase tracking-[0.48em] text-[#e0d1d1] md:text-sm">
           Pasion por el vino desde 1920
         </p>
-        <a
-          href="#vinos"
+        <Link
+          to="/vinos"
           className="mt-8 inline-flex border border-[#e0d1d1]/70 px-8 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white hover:text-[#120d0d]"
         >
           Conoce nuestros vinos
-        </a>
+        </Link>
       </div>
     </section>
   )
@@ -278,6 +280,7 @@ function WinesSection() {
           eyebrow="Seleccion premium"
           title="Nuestros Vinos"
           actionLabel="Ver coleccion completa"
+          actionTo="/vinos"
         />
 
         <div
@@ -327,6 +330,7 @@ function ExperiencesSection() {
           eyebrow="Vivir el terroir"
           title="Experiencias que trascienden"
           actionLabel="Conoce nuestras experiencias"
+          actionTo="/experiencias"
         />
 
         <div className="grid gap-6 md:grid-cols-3">
@@ -349,12 +353,14 @@ function ActionSection() {
           title="Planea tu Visita"
           description="Reserva un lugar en nuestro terroir para una experiencia sensorial unica e inolvidable."
           actionLabel="Reservar ahora"
+          actionHref={whatsappUrl}
         />
         <CtaPanel
           icon={<span className="text-xl">◇</span>}
           title="Tienda Online"
           description="Lleva la esencia de la Cordillera a tu mesa. Envio exclusivo a todo el pais y el mundo."
           actionLabel="Comprar vinos"
+          actionHref={whatsappUrl}
         />
       </div>
     </section>

@@ -1,4 +1,6 @@
-function SectionHeader({ eyebrow, title, actionLabel }) {
+import { Link } from 'react-router-dom'
+
+function SectionHeader({ eyebrow, title, actionLabel, actionTo }) {
   return (
     <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div>
@@ -10,13 +12,13 @@ function SectionHeader({ eyebrow, title, actionLabel }) {
         </h2>
       </div>
 
-      {actionLabel ? (
-        <a
-          href="#"
+      {actionLabel && actionTo ? (
+        <Link
+          to={actionTo}
           className="w-fit border-b border-[#f0b8b8] pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f0b8b8]"
         >
           {actionLabel}
-        </a>
+        </Link>
       ) : null}
     </div>
   )
