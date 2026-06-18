@@ -2,10 +2,10 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import CtaPanel from '../components/ui/CtaPanel'
 import ExperienceCard from '../components/ui/ExperienceCard'
-import FloatingWhatsApp from '../components/ui/FloatingWhatsApp'
 import NewsletterSection from '../components/ui/NewsletterSection'
 import SectionHeader from '../components/ui/SectionHeader'
 import WineCard from '../components/ui/WineCard'
+import { WHATSAPP_URL } from '../config/contact'
 import bodegaHistoriaImage from '../assets/home/bodega-historia.png'
 import experienciaAlmuerzoImage from '../assets/home/experiencia-almuerzo.png'
 import experienciaAtardecerImage from '../assets/home/experiencia-atardecer.png'
@@ -15,8 +15,6 @@ import vinoAltaGamaImage from '../assets/home/vino-alta-gama.png'
 import vinoNicolasGranataImage from '../assets/home/vino-nicolas-granata.png'
 import vinoOlivosImage from '../assets/home/vino-olivos.png'
 import vinoReservaFamiliaImage from '../assets/home/vino-reserva-familia.png'
-
-const whatsappUrl = 'https://wa.me/542611234567'
 
 const wines = [
   {
@@ -84,7 +82,6 @@ function HomePage() {
         placeholder="Tu correo electronico"
         buttonLabel="Suscribirme"
       />
-      <FloatingWhatsApp href={whatsappUrl} />
     </div>
   )
 }
@@ -358,14 +355,14 @@ function ActionSection() {
           title="Planea tu Visita"
           description="Reserva un lugar en nuestro terroir para una experiencia sensorial unica e inolvidable."
           actionLabel="Reservar ahora"
-          actionHref={whatsappUrl}
+          actionHref={WHATSAPP_URL}
         />
         <CtaPanel
           icon={<span className="text-xl">◇</span>}
           title="Tienda Online"
           description="Lleva la esencia de la Cordillera a tu mesa. Envio exclusivo a todo el pais y el mundo."
           actionLabel="Comprar vinos"
-          actionHref={whatsappUrl}
+          actionHref={WHATSAPP_URL}
         />
       </div>
     </section>

@@ -1,6 +1,8 @@
 import { Outlet } from 'react-router-dom'
 import Footer from '../components/navigation/Footer'
 import Header from '../components/navigation/Header'
+import FloatingWhatsApp from '../components/ui/FloatingWhatsApp'
+import { WHATSAPP_URL } from '../config/contact'
 
 function MainLayout() {
   return (
@@ -10,6 +12,7 @@ function MainLayout() {
         <Outlet />
       </main>
       <Footer />
+      <FloatingWhatsApp href={WHATSAPP_URL} />
     </div>
   )
 }
