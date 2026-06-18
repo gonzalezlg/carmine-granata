@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import NewsletterSection from '../components/ui/NewsletterSection'
 import vino1Image from '../assets/nuestrosVinos/vino1.png'
 import vino2Image from '../assets/nuestrosVinos/vino2.png'
 import vino3Image from '../assets/nuestrosVinos/vino3.png'
@@ -57,7 +58,12 @@ function VinosPage() {
       <VinosHero />
       <FilterBar activeFilter={activeFilter} onFilterChange={setActiveFilter} />
       <WineGallery wines={visibleWines} />
-      <WineClubSection />
+      <NewsletterSection
+        title="Unete a nuestra Cofradia"
+        description="Recibe acceso exclusivo a lanzamientos limitados y preventas de cosechas historicas."
+        placeholder="Tu correo electronico"
+        buttonLabel="Suscribirse"
+      />
     </div>
   )
 }
@@ -197,39 +203,6 @@ function WineCard({ wine }) {
         </p>
       </div>
     </article>
-  )
-}
-
-function WineClubSection() {
-  return (
-    <section className="bg-[#201a1a] px-5 py-20 text-center sm:py-24 lg:px-8">
-      <div className="mx-auto max-w-2xl">
-        <h2 className="font-serif text-4xl font-semibold leading-tight text-[#f2e7e4] sm:text-5xl">
-          Unete a nuestra Cofradia
-        </h2>
-        <p className="mx-auto mt-5 max-w-xl font-serif text-base italic leading-7 text-[#ddc0bd]/82">
-          Recibe acceso exclusivo a lanzamientos limitados y preventas de
-          cosechas historicas.
-        </p>
-
-        <form className="mx-auto mt-10 flex max-w-2xl flex-col gap-5 sm:flex-row sm:items-end">
-          <label className="flex-1 text-left">
-            <span className="sr-only">Tu correo electronico</span>
-            <input
-              type="email"
-              placeholder="Tu correo electronico"
-              className="w-full border-0 border-b border-[#574240] bg-transparent px-0 pb-3 font-serif text-base text-[#f2e7e4] placeholder:text-[#ddc0bd]/62 focus:border-[#ffaba6] focus:outline-none focus:ring-0"
-            />
-          </label>
-          <button
-            type="submit"
-            className="min-h-11 bg-[#ffaba6] px-8 text-[10px] font-bold uppercase tracking-[0.22em] text-[#4a2020] transition hover:bg-[#ffd0cb]"
-          >
-            Suscribirse
-          </button>
-        </form>
-      </div>
-    </section>
   )
 }
 
