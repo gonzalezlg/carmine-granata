@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import CtaPanel from '../components/ui/CtaPanel'
 import ExperienceCard from '../components/ui/ExperienceCard'
 import FloatingWhatsApp from '../components/ui/FloatingWhatsApp'
-import NewsletterForm from '../components/ui/NewsletterForm'
+import NewsletterSection from '../components/ui/NewsletterSection'
 import SectionHeader from '../components/ui/SectionHeader'
 import WineCard from '../components/ui/WineCard'
 import bodegaHistoriaImage from '../assets/home/bodega-historia.png'
@@ -78,7 +78,12 @@ function HomePage() {
       <ExperiencesSection />
       <StorySection />
       <ActionSection />
-      <NewsletterSection />
+      <NewsletterSection
+        title="Suscribase a nuestra Newsletter"
+        description="Conoce eventos especiales, lanzamientos exclusivos para recibir novedades sobre nuestras etiquetas, eventos privados y la vida en el vinedo."
+        placeholder="Tu correo electronico"
+        buttonLabel="Suscribirme"
+      />
       <FloatingWhatsApp href={whatsappUrl} />
     </div>
   )
@@ -362,23 +367,6 @@ function ActionSection() {
           actionLabel="Comprar vinos"
           actionHref={whatsappUrl}
         />
-      </div>
-    </section>
-  )
-}
-
-function NewsletterSection() {
-  return (
-    <section className="py-20 text-center md:py-24">
-      <div className="mx-auto w-full max-w-7xl px-5 lg:px-8">
-        <h2 className="font-serif text-4xl italic leading-tight text-white">
-          Suscribase a nuestra Newsletter
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-[#e0d1d1]/70">
-          Conoce eventos especiales, lanzamientos exclusivos para recibir novedades
-          sobre nuestras etiquetas, eventos privados y la vida en el vinedo.
-        </p>
-        <NewsletterForm />
       </div>
     </section>
   )

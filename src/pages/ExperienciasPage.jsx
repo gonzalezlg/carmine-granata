@@ -1,6 +1,7 @@
 import experienciaAlmuerzoImage from '../assets/home/experiencia-almuerzo.png'
 import experienciaAtardecerImage from '../assets/home/experiencia-atardecer.png'
 import experienciaDegustacionImage from '../assets/home/experiencia-degustacion.png'
+import NewsletterSection from '../components/ui/NewsletterSection'
 
 const heroImage = experienciaAtardecerImage
 
@@ -78,7 +79,12 @@ function ExperienciasPage() {
       <GuidedVisitSection />
       <FoodSection />
       <SensoryPathSection />
-      <CommunitySection />
+      <NewsletterSection
+        title="Unase a Nuestra Comunidad"
+        description="Sea el primero en recibir invitaciones a degustaciones privadas y lanzamientos exclusivos."
+        placeholder="Su email"
+        buttonLabel="Suscribirse"
+      />
     </div>
   )
 }
@@ -199,39 +205,6 @@ function SensoryPathSection() {
             </article>
           ))}
         </div>
-      </div>
-    </section>
-  )
-}
-
-function CommunitySection() {
-  return (
-    <section className="bg-[#120d0d] px-5 py-20 text-center sm:py-24 lg:px-8">
-      <div className="mx-auto max-w-4xl border border-[#3a2726] bg-[#171212]/70 px-6 py-14 shadow-[0_-1px_0_rgba(255,171,166,0.35)] sm:px-10 lg:px-20">
-        <h2 className="font-serif text-3xl font-normal leading-tight text-[#f2e7e4] sm:text-4xl">
-          Unase a Nuestra Comunidad
-        </h2>
-        <p className="mx-auto mt-5 max-w-xl font-serif text-sm leading-7 text-[#ddc0bd]/80 sm:text-base">
-          Sea el primero en recibir invitaciones a degustaciones privadas y
-          lanzamientos exclusivos.
-        </p>
-
-        <form className="mx-auto mt-10 flex max-w-2xl flex-col gap-5 sm:flex-row sm:items-end">
-          <label className="flex-1 text-left">
-            <span className="sr-only">Su email</span>
-            <input
-              type="email"
-              placeholder="Su email"
-              className="w-full border-0 border-b border-[#574240] bg-transparent px-0 pb-3 font-serif text-base text-[#f2e7e4] placeholder:text-[#ddc0bd]/58 focus:border-[#ffaba6] focus:outline-none focus:ring-0"
-            />
-          </label>
-          <button
-            type="submit"
-            className="min-h-11 bg-[#ffaba6] px-8 text-[10px] font-bold uppercase tracking-[0.22em] text-[#4a2020] transition hover:bg-[#ffd0cb]"
-          >
-            Suscribirse
-          </button>
-        </form>
       </div>
     </section>
   )
