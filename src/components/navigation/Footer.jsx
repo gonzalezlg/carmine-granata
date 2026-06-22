@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import SocialIcon from '../ui/SocialIcon'
 
 const footerGroups = [
   {
@@ -43,10 +44,22 @@ function Footer() {
             Contacto
           </h2>
           <p className="mt-4 text-sm text-[#e0d1d1]/70">Mendoza, Argentina</p>
-          <div className="mt-5 flex gap-3 text-sm text-white">
-            <span>IG</span>
-            <span>FB</span>
-            <span>YT</span>
+          <div className="mt-5 flex items-center gap-4 text-[#e0d1d1]/70">
+            <SocialLink
+              href="https://www.instagram.com/"
+              label="Instagram"
+              icon="instagram"
+            />
+            <SocialLink
+              href="https://www.facebook.com/"
+              label="Facebook"
+              icon="facebook"
+            />
+            <SocialLink
+              href="https://www.youtube.com/"
+              label="YouTube"
+              icon="youtube"
+            />
           </div>
         </div>
       </div>
@@ -58,6 +71,20 @@ function Footer() {
         </div>
       </div>
     </footer>
+  )
+}
+
+function SocialLink({ href, label, icon }) {
+  return (
+    <a
+      href={href}
+      aria-label={label}
+      target="_blank"
+      rel="noreferrer"
+      className="transition hover:text-[#ffaba6]"
+    >
+      <SocialIcon name={icon} />
+    </a>
   )
 }
 
