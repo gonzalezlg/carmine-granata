@@ -1,3 +1,6 @@
+import contactHeroImage from '../assets/contacto/contacto-equipo-bodega.png'
+import visitVineyardImage from '../assets/contacto/contacto-vinedos.png'
+
 const contactItems = [
   {
     icon: 'tel',
@@ -37,10 +40,12 @@ function ContactoPage() {
 function ContactHero() {
   return (
     <section className="relative flex min-h-[560px] items-center justify-center overflow-hidden pt-20 sm:min-h-[620px] lg:min-h-[520px]">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(153,104,55,0.42)_0%,_rgba(55,31,20,0.24)_28%,_rgba(7,5,5,0.86)_70%),repeating-linear-gradient(90deg,_rgba(15,9,7,0.98)_0_8%,_rgba(120,74,37,0.62)_8%_10%,_rgba(25,14,10,0.98)_10%_18%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(18,13,13,0.24),_rgba(18,13,13,0.8)),radial-gradient(ellipse_at_50%_36%,_transparent_0%,_rgba(0,0,0,0.66)_70%)]" />
-      <div className="absolute left-1/2 top-[22%] h-24 w-px -translate-x-1/2 bg-[#c7a06f]/35" />
-      <div className="absolute left-1/2 top-[30%] h-16 w-10 -translate-x-1/2 rounded-b-full border border-[#c7a06f]/30 bg-[#d7ad74]/25 shadow-[0_0_42px_rgba(211,158,86,0.36)]" />
+      <img
+        src={contactHeroImage}
+        alt="Equipo de la bodega reunido en la cava"
+        className="absolute inset-0 h-full w-full object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(18,13,13,0.46),_rgba(18,13,13,0.82)),radial-gradient(ellipse_at_50%_42%,_rgba(0,0,0,0.08)_0%,_rgba(0,0,0,0.58)_76%)]" />
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
         <h1 className="font-serif text-5xl font-semibold leading-none text-[#f2e7e4] sm:text-7xl lg:text-7xl">
@@ -185,9 +190,12 @@ function InfoBlock({ title, children, className = '' }) {
 function VisitSection() {
   return (
     <section className="relative min-h-[520px] overflow-hidden lg:min-h-[320px]">
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,_#31495b_0%,_#c74f52_23%,_#ef9f54_38%,_#1f2a34_39%,_#273b21_58%,_#1f160f_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-[45%] bg-[repeating-linear-gradient(100deg,_rgba(70,28,28,0.84)_0_3%,_rgba(34,63,27,0.94)_3%_7%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(18,13,13,0.08),_rgba(18,13,13,0.74)),radial-gradient(ellipse_at_50%_48%,_transparent_0%,_rgba(0,0,0,0.45)_72%)]" />
+      <img
+        src={visitVineyardImage}
+        alt="Viñedos de Mendoza con la cordillera de los Andes"
+        className="absolute inset-0 h-full w-full object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(18,13,13,0.12),_rgba(18,13,13,0.64)),radial-gradient(ellipse_at_52%_44%,_transparent_0%,_rgba(0,0,0,0.4)_78%)]" />
 
       <div className="relative z-10 mx-auto flex min-h-[520px] max-w-7xl items-center px-5 py-20 lg:min-h-[320px] lg:px-8 lg:py-10">
         <div className="w-full max-w-[395px] bg-[#2a1d1c]/92 px-7 py-10 shadow-2xl shadow-black/20 backdrop-blur-sm sm:px-9 lg:max-w-[360px] lg:px-7 lg:py-7">
