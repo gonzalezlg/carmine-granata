@@ -43,7 +43,7 @@ function ContactHero() {
       <img
         src={contactHeroImage}
         alt="Equipo de la bodega reunido en la cava"
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        className="absolute inset-0 h-full w-full object-cover object-top"
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(18,13,13,0.46),_rgba(18,13,13,0.82)),radial-gradient(ellipse_at_50%_42%,_rgba(0,0,0,0.08)_0%,_rgba(0,0,0,0.58)_76%)]" />
 
