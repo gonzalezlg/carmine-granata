@@ -1,5 +1,6 @@
 import contactHeroImage from '../assets/contacto/contacto-equipo-bodega.png'
 import visitVineyardImage from '../assets/contacto/contacto-vinedos.png'
+import SocialIcon from '../components/ui/SocialIcon'
 
 const contactItems = [
   {
@@ -16,12 +17,12 @@ const contactItems = [
 
 const socialItems = [
   {
-    icon: 'message',
+    icon: 'whatsapp',
     label: 'WhatsApp',
     href: 'https://wa.me/542611234567',
   },
   {
-    icon: 'camera',
+    icon: 'instagram',
     label: 'Instagram',
     href: 'https://www.instagram.com/',
   },
@@ -163,7 +164,7 @@ function ContactDetails() {
               rel="noreferrer"
             >
               <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg border border-[#74504b] text-[#dfcdca] transition group-hover:border-[#ffaba6] group-hover:text-[#ffaba6]">
-                <ContactIcon name={item.icon} />
+                <SocialIcon name={item.icon} />
               </span>
               <span className="mt-2 block">{item.label}</span>
             </a>
