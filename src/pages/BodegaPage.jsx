@@ -41,21 +41,25 @@ const timeline = [
     year: '1920',
     title: 'Fundacion',
     description: 'Don Alessandro planta las primeras vides traidas de Italia.',
+    icon: 'vine',
   },
   {
     year: '1950',
     title: 'Expansion',
     description: 'Cruzamos fronteras por primera vez, llegando a las mesas de Europa.',
+    icon: 'barrel',
   },
   {
     year: '1990',
     title: 'Innovacion',
     description: 'Riego por goteo y viticultura de precision para leer cada parcela.',
+    icon: 'irrigation',
   },
   {
     year: '2024',
     title: 'Global',
     description: 'Referentes de sustentabilidad y calidad andina.',
+    icon: 'sustainable',
   },
 ]
 
@@ -253,15 +257,15 @@ function HistorySection() {
         </div>
 
         <div className="relative mt-20 hidden lg:block">
-          <div className="absolute left-0 top-[85px] h-px w-full bg-[#ffaba6]/24" />
+          <div className="absolute left-0 top-[112px] h-px w-full bg-[#ffaba6]/24" />
           <div className="relative z-10 grid grid-cols-4 gap-10 text-center">
             {timeline.map((item) => (
               <article key={item.year} className="flex flex-col items-center">
                 <p className="font-serif text-6xl text-[#ffaba6]/72">
                   {item.year}
                 </p>
-                <div className="mt-6 flex h-12 w-12 items-center justify-center rounded-full border border-[#ffaba6]/35 bg-[#201a1a]">
-                  <span className="h-2 w-2 rounded-full bg-[#ffaba6]/70" />
+                <div className="mt-6 flex h-14 w-14 items-center justify-center rounded-full border border-[#ffaba6]/38 bg-[#201a1a] shadow-[0_0_0_7px_#201a1a]">
+                  <WineTimelineIcon type={item.icon} />
                 </div>
                 <h3 className="mt-7 font-serif text-2xl text-[#f2e7e4]">
                   {item.title}
@@ -283,25 +287,123 @@ function HistorySection() {
             </h2>
           </div>
 
-          <div className="mt-14 grid gap-12 sm:grid-cols-2">
-            {timeline.map((item) => (
-              <article key={item.year} className="text-center">
-                <p className="font-serif text-5xl text-[#ffaba6]/72">
-                  {item.year}
-                </p>
-                <div className="mx-auto mt-5 h-px w-12 bg-[#ffaba6]/28" />
-                <h3 className="mt-5 font-serif text-2xl text-[#f2e7e4]">
-                  {item.title}
-                </h3>
-                <p className="mx-auto mt-4 max-w-[260px] font-serif text-sm leading-6 text-[#ddc0bd]/72">
-                  {item.description}
-                </p>
-              </article>
-            ))}
+          <div className="relative mt-16">
+            <div className="absolute bottom-0 left-7 top-0 w-px bg-[linear-gradient(180deg,transparent_0%,rgba(255,171,166,0.34)_8%,rgba(255,171,166,0.34)_92%,transparent_100%)] sm:left-1/2 sm:-translate-x-1/2" />
+
+            <div className="space-y-12 sm:space-y-16">
+              {timeline.map((item, index) => {
+                const isLeft = index % 2 === 0
+
+                return (
+                  <article
+                    key={item.year}
+                    className="relative grid grid-cols-[56px_minmax(0,1fr)] items-center gap-5 sm:grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] sm:gap-7"
+                  >
+                    <div
+                      className={`order-2 text-left ${
+                        isLeft
+                          ? 'sm:order-1 sm:text-right'
+                          : 'sm:order-3 sm:text-left'
+                      }`}
+                    >
+                      <p className="font-serif text-5xl leading-none text-[#ffaba6]/72">
+                        {item.year}
+                      </p>
+                      <h3 className="mt-3 font-serif text-2xl text-[#f2e7e4]">
+                        {item.title}
+                      </h3>
+                      <div
+                        className={`mt-4 h-px w-10 bg-[#ffaba6]/28 ${
+                          isLeft ? 'sm:ml-auto' : ''
+                        }`}
+                      />
+                      <p
+                        className={`mt-4 max-w-[300px] font-serif text-sm leading-6 text-[#ddc0bd]/72 ${
+                          isLeft ? 'sm:ml-auto' : ''
+                        }`}
+                      >
+                        {item.description}
+                      </p>
+                    </div>
+
+                    <div className="order-1 z-10 flex h-14 w-14 items-center justify-center rounded-full border border-[#ffaba6]/42 bg-[#201a1a] shadow-[0_0_0_7px_#201a1a] sm:order-2 sm:mx-auto">
+                      <WineTimelineIcon type={item.icon} />
+                    </div>
+
+                    <div
+                      aria-hidden="true"
+                      className={`hidden sm:block ${
+                        isLeft ? 'sm:order-3' : 'sm:order-1'
+                      }`}
+                    />
+                  </article>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>
     </section>
+  )
+}
+
+function WineTimelineIcon({ type }) {
+  const commonProps = {
+    'aria-hidden': true,
+    className: 'h-7 w-7 text-[#ffaba6]/82',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    strokeWidth: 1.35,
+    viewBox: '0 0 32 32',
+  }
+
+  if (type === 'vine') {
+    return (
+      <svg {...commonProps}>
+        <path d="M16 27c.2-7.4-.8-13.1-5.5-18.6" />
+        <path d="M15.4 20.5c-3.8.2-6.5-1.4-7.9-4.8 3.5-.8 6.3.7 7.9 4.8Z" />
+        <path d="M14.1 14.4c3.8-.6 6.9-2.9 8.2-6.6-4-.2-7.1 2.1-8.2 6.6Z" />
+        <circle cx="19.2" cy="18.2" r="2.1" />
+        <circle cx="22.8" cy="18.8" r="2.1" />
+        <circle cx="20.9" cy="22" r="2.1" />
+        <circle cx="24.4" cy="22.2" r="1.8" />
+        <circle cx="22.5" cy="25.2" r="1.8" />
+        <path d="M20.4 15.5c.6-1.1 1.7-1.8 3-1.9" />
+      </svg>
+    )
+  }
+
+  if (type === 'barrel') {
+    return (
+      <svg {...commonProps}>
+        <path d="M9.2 6.3c4.4-1.4 9.2-1.4 13.6 0 1.5 6.3 1.5 13.1 0 19.4-4.4 1.4-9.2 1.4-13.6 0-1.5-6.3-1.5-13.1 0-19.4Z" />
+        <path d="M8.3 10.2c5 .9 10.4.9 15.4 0M8.1 21.8c5.2-.9 10.6-.9 15.8 0M8 16h16" />
+        <path d="M12 6.1c-.8 6.5-.8 13.3 0 19.8M20 6.1c.8 6.5.8 13.3 0 19.8" />
+        <circle cx="16" cy="16" r="1.2" />
+      </svg>
+    )
+  }
+
+  if (type === 'irrigation') {
+    return (
+      <svg {...commonProps}>
+        <path d="M5 9.5h10.5c2.8 0 5 2.2 5 5v1.2" />
+        <path d="M8 6.5v6M5 7.7h6" />
+        <path d="M20.5 15.7c-2.1 3-3.5 4.8-3.5 7a3.5 3.5 0 0 0 7 0c0-2.2-1.4-4-3.5-7Z" />
+        <path d="M7.5 25.5c1.4-4.8 3.8-8.4 7.4-10.8M7.7 19.8c2.4-.1 4 .8 5 2.7M9.8 15.7c2.2-.1 3.8.8 4.8 2.5" />
+      </svg>
+    )
+  }
+
+  return (
+    <svg {...commonProps}>
+      <circle cx="16" cy="16" r="10.5" />
+      <path d="M5.8 15.1c4.1 1 7 3.2 8.7 6.8M12.3 6.1c2.6 2.2 4.1 5.2 4.4 9M25.3 13c-4.8.1-8.8 1.7-11.7 4.8" />
+      <path d="M21.7 9.1c-.1 3.7-1.9 6.1-5.5 7.2-.5-3.5 1.3-5.9 5.5-7.2Z" />
+      <path d="M16.1 16.4c2.1 1.5 3.6 3.7 4.3 6.4" />
+    </svg>
   )
 }
 
